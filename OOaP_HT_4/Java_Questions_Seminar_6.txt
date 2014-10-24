@@ -1,0 +1,68 @@
+№1
+
+Какие из вариантов объявления интерфейса, 
+представленных ниже, не приведут в ошибке компиляции (версия языка - 8.0)?
+1) private interface MyInterface {}
+2) public interface MyInterface {public void doSomething();}
+3) public interface MyInterface{volatile void doSomething();}
+4) public interface MyInterface {default public void doSomething() {};}
+
+№2
+
+Из представленных ниже утверждений выберите неверные:
+1) Локальные классы не имеют доступа к приватным полям и методам своего вненего класса.
+2) Внешний класс не имеет прямого доступа к закрытым (private) полям своего внутреннего класса.
+3) В статическом вложенном классе (nested class) можно работать с нестатическими полями и методами внешнего класса, не создавая нешнего экземляра класса.
+4) Анонимный класс не имеет конструктора и имени.
+
+№3
+
+Что выведет программа на экран? *** - ошибка компиляции или необработанное исключение, 
++++ - все запускается, но программа ничего не выводит
+
+import java.lang.Override;
+
+public abstract class Car {
+    private String make;
+
+    public abstract void start();
+
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public String getMake() {
+        return make;
+    }
+}
+
+class Program {
+    public static void main(String[] args) {
+        Car Hybrid = new Car() {
+            int battery = 3000;
+
+            @Override
+            public void start() {
+                battery -= 100;
+                System.out.println("battery= " + battery);
+            }
+
+            public void setMake(String make) {
+                super.setMake(make);
+            }
+
+            public int getBattery() {
+                return battery;
+            }
+        };
+        Hybrid.start();
+        Hybrid.setMake("Hyundai");
+        System.out.println(Hybrid.battery);
+
+
+    }
+
+}
+
+
+_________________
